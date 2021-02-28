@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+rails g scaffold doctor name:string
+
+rails g scaffold patient name:string
+
+rails g scaffold appointment doctor:references  patient:references start_time:datetime  end_time:datetime
