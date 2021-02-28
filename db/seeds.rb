@@ -1,12 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-rails g scaffold doctor name:string
+1.upto(100) do
+  doctor = Doctor.create( name: Faker::Name.unique.name )
 
-rails g scaffold patient name:string
+  patient = Patient.create( name: Faker::Name.unique.name )
 
-rails g scaffold appointment doctor:references  patient:references start_time:datetime  end_time:datetime
+  Appointment.create( 
+    doctor_id: doctor.id,  
+    patient_id: patient.id, 
+    start_time: 1.week.from_now.beginning_of_day + 8.hours,  
+    end_time: 1.week.from_now.beginning_of_day + 9.hours )
+end
